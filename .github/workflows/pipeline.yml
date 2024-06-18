@@ -1,9 +1,9 @@
-name: Lint
+name: Lint, Build and Test
 
 on: [push, pull_request]
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,7 +12,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'  # Especificar la versión de Python adecuada
+        python-version: '3.9'  # Especifica la versión de Python que estás utilizando
 
     - name: Install dependencies
       run: |
@@ -21,4 +21,25 @@ jobs:
 
     - name: Run linter
       run: |
-        flake8  # Ejecutar el linting con Flake8
+        flake8  # Ejecuta el linting con Flake8
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Especifica la versión de Python que estás utilizando
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Instala las dependencias del proyecto, si las hay
+
+    - name: Run tests
+      run: |
+        # Ejecuta tus pruebas aquí, por ejemplo:
+        pytest  # Suponiendo que uses pytest para tus pruebas
