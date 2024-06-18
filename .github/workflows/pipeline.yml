@@ -12,7 +12,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # Reemplace con la versión de Python que esté utilizando
+        python-version: '3.9'  # Especificar la versión de Python adecuada
 
     - name: Install dependencies
       run: |
@@ -21,4 +21,4 @@ jobs:
 
     - name: Run linter
       run: |
-        flake8  # Ejecuta el linting con Flake8
+        flake8  # Ejecutar el linting con Flake8
