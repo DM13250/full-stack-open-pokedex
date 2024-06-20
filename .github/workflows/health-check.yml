@@ -1,0 +1,20 @@
+name: Health Check
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Ejecuta cada 6 horas
+  push:
+    branches:
+      - main
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Perform URL health check
+      uses: fkirc/url-health-check@v1
+      with:
+        urls: https://your-deployed-app-url.com
+        retryCount: 5
+        retryInterval: 30
